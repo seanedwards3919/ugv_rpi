@@ -133,7 +133,9 @@ else
   echo "# Using default sources."
 fi
 
-
+# Setup dbus-python requirements
+echo "# setup dbus-python requirements"
+sudo apt install build-essential libdbus-glib-1-dev libgirepository1.0-dev
 
 # Install required software
 echo "# Install required software."
@@ -155,7 +157,8 @@ sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install setupt
 
 # Error installing av unless this libavformat package installed
 echo "# installing dependencies for av"
-sudo apt install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev libopenmpi-dev
+sudo apt-get install -y python-dev pkg-config
+sudo apt install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev libopenmpi-dev libswresample-dev
 
 
 echo "# Install dependencies from requirements.txt"
