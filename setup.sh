@@ -150,6 +150,14 @@ python -m venv --system-site-packages ugv-env
 
 echo "# Activate a Python virtual environment."
 
+echo "# updating wheel..."
+sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install setuptools wheel'
+
+# Error installing av unless this libavformat package installed
+echo "# installing dependencies for av"
+sudo apt install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev libopenmpi-dev
+
+
 echo "# Install dependencies from requirements.txt"
 # Install dependencies from requirements.txt
 if $use_index; then
@@ -157,6 +165,7 @@ if $use_index; then
 else
   sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install -r requirements.txt && deactivate'
 fi
+echo "# Python installation ended..."
 # Arandr install (Debian) 
 # Was giving error when installed via pip
 sudo apt install arandr
