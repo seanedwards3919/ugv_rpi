@@ -169,6 +169,11 @@ else
   sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install -r requirements.txt && deactivate'
 fi
 sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install --upgrade --force-reinstall matplotlib'
+sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install --upgrade --force-reinstall matplotlib'
+
+echo "# manually installing correct numpy version"
+sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip uninstall numpy'
+sudo -H -u $USER bash -c 'source $PWD/ugv-env/bin/activate && pip install "numpy<2"'
 
 echo "# Python installation ended..."
 # Arandr install (Debian) 
