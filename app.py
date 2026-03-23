@@ -587,6 +587,8 @@ def cmd_on_boot():
 
 # Run the Flask app
 if __name__ == "__main__":
+    print("\n\n --------------------\nThis is a fresh boot!\n--------------------")
+    
     # lights off
     base.lights_ctrl(255, 255)
 
