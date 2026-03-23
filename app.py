@@ -589,6 +589,12 @@ def cmd_on_boot():
 if __name__ == "__main__":
     # lights off
     base.lights_ctrl(255, 255)
+
+    # The given script to activate AccessPopup simply
+    # does not work. We're going to call it manually
+    # from this python script instead!
+    import subprocess
+    subprocess.Popen(['sudo', 'bash', '-c', 'accesspopup'])
     
     # play a audio file in /sounds/robot_started/
     audio_ctrl.play_random_audio("robot_started", False)
