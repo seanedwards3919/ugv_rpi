@@ -17,8 +17,8 @@ cron_job2="@reboot /bin/bash ~/ugv_rpi/start_jupyter.sh >> ~/jupyter_log.log 2>&
 cron_job3="@reboot sudo systemctl stop dnsmasq.service"
 cron_job4="@reboot sudo systemctl disable dnsmasq.service"
 
-# Define cron job for setting up AccessPoppup
-cron_job5="@reboot sudo accesspopup"
+# Define cron job for setting up AccessPoppup timer
+cron_job5="*/2 * * * * sudo /usr/bin/accesspopup >/dev/null 2>& 1"
 
 # Check if the first cron job already exists in the user's crontab
 if crontab -l | grep -q "$cron_job1"; then
@@ -60,7 +60,7 @@ if crontab -l | grep -q "$cron_job5"; then
     echo "Fifth cron job is already set, no changes made."
 else
     # Add the second cron job for the user
-    (crontab -l 2>/dev/null; echo "$cron_job4") | crontab -
+    (crontab -l 2>/dev/null; echo "$cron_job5") | crontab -
     echo "Fifth cron job added successfully."
 fi
 
